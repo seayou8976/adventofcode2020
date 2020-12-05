@@ -7,14 +7,17 @@ Set-Location $PSScriptRoot
 $input = "day4input.txt"
 $num = (Get-Content $input -Raw | Measure-Object -Line).lines - (Get-Content $input | Measure-Object -Line).Lines
 
+Write-Host "++++++ Part 1 ++++++" -ForegroundColor Yellow
+
 $valid = 0
 $invalid = 0
 
-Write-Host "++++++ Part 1 ++++++" -ForegroundColor Yellow
+$reg = '(byr|iyr|eyr|hgt|hcl|ecl|pid)'
+
 Try {
     for ($i = 0; $i -lt ($num + 1); $i++) {
         $passport = (Get-Content $input -Raw) -split '(?:\r?\n){2,}' | Select-Object -Index $i
-        if (($passport | Select-String -Pattern '(byr|iyr|eyr|hgt|hcl|ecl|pid)' -AllMatches).Matches.Count -eq 7 ) {
+        if (($passport | Select-String -Pattern "$reg" -AllMatches).Matches.Count -eq 7 ) {
             #Write-Host "$passport" -ForegroundColor Green
             $valid++
         } else {
