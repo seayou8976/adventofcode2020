@@ -1,3 +1,5 @@
-NOPE lol 
+https://adventofcode.com/2020/day/3
 
-maybe later
+NOPE
+
+Maybe later
